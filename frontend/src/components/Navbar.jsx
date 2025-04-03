@@ -34,7 +34,8 @@ const Navbar = () => {
                   0
                 </sup>
               </button>
-              <i className="ri-user-line  rounded-full cursor-pointer"></i>
+              {/* login */}
+              <Link to={'/login'}><i className="ri-user-line  rounded-full cursor-pointer"></i></Link>   
             </span>
           </div>
         </nav>
