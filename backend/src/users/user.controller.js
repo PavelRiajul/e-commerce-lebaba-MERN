@@ -53,7 +53,18 @@ const userLoggedIn =async(req,res)=>{
         res.status(500).send({message:"Login failed"})
   }
 }
+//user logout
+const userLogout =async(req,res)=>{
+      try {
+        res.clearCookie('token')
+        res.status(200).send({message:"Logged out successfully"})
+      } catch (error) {
+        console.log("Error logged out a user",error)
+        res.status(500).send({message:"logged out failed"})
+      }
+}
 module.exports ={
     userRegistration,
     userLoggedIn,
+    userLogout,
 }
