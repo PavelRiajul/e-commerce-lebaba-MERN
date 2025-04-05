@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.JWT_SECRET_KEY
 const verifyToken =(req,res,next)=>{
     try {
-        //const token = req.cookies.token; //TODO: uncomment this when done
-        const token = req.headers.authorization?.split(' ')[1]
+        const token = req.cookies.token; //TODO: uncomment this when done frontend theke req pathale cookie maddome pathabo.
+        // const token = req.headers.authorization?.split(' ')[1]
         //console.log('token form cookies',token)
         if(!token){
             return successResponse(res,401,'Token not found!')
