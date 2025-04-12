@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ProductCards from './ProductCards'
 import { useFetchAllProdutsQuery } from '../../redux/features/products/productsApi'
 import ShopFiltering from './ShopFiltering'
+import Loading from '../../components/Loading'
 
 //category filters
 const filters = 
@@ -43,7 +44,9 @@ const ShopPage = () => {
     })
     //console.log(productsData?.data)
 
-    if(isLoading) return <p>Loading...</p>
+    //loading
+    if(isLoading) return <Loading/>
+
     const {products,totalPages,totalProducts} =  productsData?.data || {}
     //console.log(products)
 

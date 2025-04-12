@@ -7,6 +7,7 @@ import CategoryPage from "../pages/category/CategoryPage";
 import ErrorPage from "../components/ErrorPage";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import SingleProduct from "../pages/shop/productDetails/SingleProduct";
 
 const RoutePage = () => {
   return (
@@ -15,6 +16,7 @@ const RoutePage = () => {
         <Route element={<App />}>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<ShopPage />} />
+          <Route path="/shop/:id" element={<SingleProduct/>}/>
           <Route path="/categories/:categoryName" element={<CategoryPage/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Route>
