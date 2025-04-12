@@ -4,10 +4,15 @@ import { Link, NavLink, useNavigate } from "react-router";
 import avatarImg from "../assets/avatar.png";
 import { logout } from "../redux/features/auth/authSlice";
 import { useLogoutUserMutation } from "../redux/features/auth/authApi";
+import CartModal from "../pages/shop/cartModal";
+
 const Navbar = () => {
   //addtocart product
   const products = useSelector((state)=> state.cart.products)
-  console.log(products)
+  //console.log(products)
+  //cartpage open
+  const [isCartOpen, setIsCartOpen] = useState(false)
+
   const { user } = useSelector((state) => state.auth);
   //console.log(user)
   //logout dispatch/navigate
@@ -18,6 +23,11 @@ const Navbar = () => {
   const handleDropDownToogle = () => {
     setIsDropDownOpen(!isDropDownOpen);
   };
+
+  //handle cart toggle
+  const handleCartToggle = () => {
+    setIsCartOpen(!isCartOpen)
+}
 
   //user navigation dropdown menu
   const userDropdownMenus = [
@@ -101,7 +111,9 @@ const Navbar = () => {
             </span>
             <span className="flex items-center justify-between gap-2">
               {/* cart button */}
-              <button className="hover:text-[#ed3849] flex items-center">
+              <button 
+              onClick={handleCartToggle}
+              className="hover:text-[#ed3849] flex items-center">
                 <i className="ri-shopping-bag-line"></i>
                 <sup className="text-sm inline-block w-4 px-1.5 text-white rounded-full bg-[#ed3849] text-center">
                   {products.length}
@@ -145,6 +157,11 @@ const Navbar = () => {
             </span>
           </div>
         </nav>
+
+        {/* cart modal */}
+        {
+          isCartOpen && <CartModal products={products} isOpen={isCartOpen} onClose={handleCartToggle}/>
+        }
       </header>
     </>
   );
