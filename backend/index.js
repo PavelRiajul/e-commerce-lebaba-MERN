@@ -4,6 +4,7 @@ const port = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const cors = require('cors')
 require('dotenv').config()
+const  cookieParser = require('cookie-parser')
 
 //middleware
 app.use(express.json());
@@ -11,6 +12,7 @@ app.use(cors({
   origin:'http://localhost:5173',
   credentials:true   //  credentials releted joto jinish ase seta jate kaj kore example token
 }))
+app.use(cookieParser())
 //routes
 const userRoutes = require('./src/users/user.route')
 const productsRoutes = require('./src/products/product.route')

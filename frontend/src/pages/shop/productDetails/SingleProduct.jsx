@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router'
 import { useFetchProductbyIdQuery } from '../../../redux/features/products/productsApi'
 import Loading from '../../../components/Loading'
 import RatingStar from '../../../components/RatingStar'
+import ReviewsCard from '../reviews/ReviewsCard'
 
 const SingleProduct = () => {
      const {id} = useParams()
@@ -65,6 +66,11 @@ const SingleProduct = () => {
                         </button>
                     </div>
                 </div>
+            </section>
+
+            {/* reviews */}
+            <section className="section__container mt-8">
+                <ReviewsCard productReviews={reviews}/>
             </section>
     </>
   )

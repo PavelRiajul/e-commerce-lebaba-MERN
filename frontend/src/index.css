@@ -593,6 +593,10 @@
   .active{
     color:#ed3849 !important;
   }
+  .review-img{
+    width: 48px;
+    height: 48px;
+  }
   
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
