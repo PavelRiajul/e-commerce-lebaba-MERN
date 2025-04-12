@@ -5,6 +5,9 @@ import avatarImg from "../assets/avatar.png";
 import { logout } from "../redux/features/auth/authSlice";
 import { useLogoutUserMutation } from "../redux/features/auth/authApi";
 const Navbar = () => {
+  //addtocart product
+  const products = useSelector((state)=> state.cart.products)
+  console.log(products)
   const { user } = useSelector((state) => state.auth);
   //console.log(user)
   //logout dispatch/navigate
@@ -97,10 +100,11 @@ const Navbar = () => {
               </Link>
             </span>
             <span className="flex items-center justify-between gap-2">
+              {/* cart button */}
               <button className="hover:text-[#ed3849] flex items-center">
                 <i className="ri-shopping-bag-line"></i>
                 <sup className="text-sm inline-block w-4 px-1.5 text-white rounded-full bg-[#ed3849] text-center">
-                  0
+                  {products.length}
                 </sup>
               </button>
               {/* login */}

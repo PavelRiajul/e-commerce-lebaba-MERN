@@ -4,8 +4,11 @@ import { useFetchProductbyIdQuery } from '../../../redux/features/products/produ
 import Loading from '../../../components/Loading'
 import RatingStar from '../../../components/RatingStar'
 import ReviewsCard from '../reviews/ReviewsCard'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../../redux/features/cart/cartSlice'
 
 const SingleProduct = () => {
+    const dispatch = useDispatch()
      const {id} = useParams()
      const { data: { data: productDetails } = {}, isLoading, isError } = useFetchProductbyIdQuery(id);
      if (isLoading) return <Loading />
@@ -13,8 +16,13 @@ const SingleProduct = () => {
      //console.log(productDetails)
      //backend theke paisi
      const { product, reviews } = productDetails || {}
-     console.log(product)
-     console.log(reviews)
+     //console.log(product)
+     //console.log(reviews)
+
+      // handle addToCart
+  const handleAddToCart = (product)=>{
+    dispatch(addToCart(product))
+  }
   return (
     <>
     {/*   product details page banner */}
@@ -60,7 +68,7 @@ const SingleProduct = () => {
                         </div>
 
                         {/* Add to Cart Button */}
-                        <button
+                        <button onClick={()=> handleAddToCart(product)}
                             className="mt-6 px-6 py-3 bg-primary text-white rounded-md">
                             Add to Cart
                         </button>
