@@ -8,6 +8,7 @@ import ErrorPage from "../components/ErrorPage";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import SingleProduct from "../pages/shop/productDetails/SingleProduct";
+import PaymentSuccess from "../components/PaymentSuccess";
 
 const RoutePage = () => {
   return (
@@ -17,6 +18,7 @@ const RoutePage = () => {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/shop/:id" element={<SingleProduct/>}/>
+          <Route path="success" element={<PaymentSuccess/>}/>
           <Route path="/categories/:categoryName" element={<CategoryPage/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Route>

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors')
 require('dotenv').config()
 const  cookieParser = require('cookie-parser')
-
+const bodyParser = require('body-parser')
 //middleware
 app.use(express.json());
 app.use(cors({
@@ -13,13 +13,16 @@ app.use(cors({
   credentials:true   //  credentials releted joto jinish ase seta jate kaj kore example token
 }))
 app.use(cookieParser())
+app.use(bodyParser.json())
 //routes
 const userRoutes = require('./src/users/user.route')
 const productsRoutes = require('./src/products/product.route')
 const reviewsRoutes = require('./src/reviews/review.route')
+const ordersRoutes = require('./src/orders/order.route')
 app.use('/api/auth',userRoutes)
 app.use('/api/products',productsRoutes)
 app.use('/api/reviews',reviewsRoutes)
+app.use("/api/orders", ordersRoutes);
 async function main() {
     await mongoose.connect(process.env.UB_URL);
     app.get('/', (req, res) => {
