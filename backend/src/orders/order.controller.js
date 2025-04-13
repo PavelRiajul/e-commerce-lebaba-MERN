@@ -70,7 +70,88 @@ const confirmPayment = async (req, res) => {
   }
 }
 
+const getOrdersByEmail = async (req, res) => {
+  const email = req.params.email;
+  try {
+    if(!email) {
+      return errorResponse(res, 400, "Email is required")
+    }
+    const orders = await Order.find({email}).sort({createdAt: - 1})
+    if(orders.length === 0 || !orders) {
+      return errorResponse(res, 404, "No orders found for this email")
+    }
+    return successResponse(res, 200, "Orders fetched successfully", orders)
+  } catch (error) {
+    return errorResponse(res, 500, "Failed to get orders", error)
+  }
+}
+
+const getOrdersByOrderId = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if(!order) {
+      return errorResponse(res, 404, "Order not found")
+    }
+    return successResponse(res, 200, "Order fetched successfully", order)
+  } catch (error) {
+    return errorResponse(res, 500, "Failed to get order", error)
+  }
+}
+
+const getAllOrders = async (req, res) => {
+  try {
+    const orders =  await Order.find().sort({createdAt: -1});
+    if(orders.length === 0 || !orders) {
+      return errorResponse(res, 404, "No orders found")
+    }
+    return successResponse(res, 200, "Orders fetched successfully", orders)
+  } catch (error) {
+    return errorResponse(res, 500, "Failed to get all orders", error)
+  }
+}
+
+const updateOrderStatus = async (req, res) => {
+  const {id} = req.params;
+  const {status} = req.body;
+  if(!status) {
+    return errorResponse(res, 400, "Status is required")
+  }
+  try {
+    const updatedOrder = await Order.findByIdAndUpdate(id, {status, updatedAt: Date.now()}, {
+      new: true,
+      runValidators: true,
+    })
+
+    if(!updatedOrder) {
+      return errorResponse(res, 404, "Order not found")
+    }
+
+    return successResponse(res, 200, "Order status updated successfully", updatedOrder)
+  } catch (error) {
+    return errorResponse(res, 500, "Failed to update order status", error)
+  }
+}
+
+const deleteOrderById = async (req, res) => {
+  const {id} = req.params;
+  try {
+    const deletedOrder = await Order.findByIdAndDelete(id);
+    if(!deletedOrder) {
+      return errorResponse(res, 404, "Order not found")
+    }
+    return successResponse(res, 200, "Order deleted successfully", deletedOrder)
+  } catch (error) {
+    return errorResponse(res, 500, "Failed to delete order", error)
+  }
+}
+
+
 module.exports = {
   makePaymentRequest,
   confirmPayment,
+  getOrdersByEmail,
+  getOrdersByOrderId,
+  getAllOrders,
+  updateOrderStatus,
+  deleteOrderById
 };
