@@ -11,6 +11,7 @@ import SingleProduct from "../pages/shop/productDetails/SingleProduct";
 import PaymentSuccess from "../components/PaymentSuccess";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivetRoute from "./PrivetRoute";
+import UserDMain from "../pages/dashboard/user/dashboard/UserDMain";
 
 const RoutePage = () => {
   return (
@@ -43,7 +44,7 @@ const RoutePage = () => {
           {''}
           {/* Absolute path -> absolute path er bitore relative path use kore -> aeta holo parents*/}
           {/* User Routes */}
-          <Route path="" element={<div>User Dashboard</div>} />
+          <Route path="" element={<UserDMain/>} />
           <Route path="orders" element={<div>Orders</div>} />{" "}
           {/* relative path aeta holo children */}
           <Route path="payments" element={<div>Payments</div>} />
