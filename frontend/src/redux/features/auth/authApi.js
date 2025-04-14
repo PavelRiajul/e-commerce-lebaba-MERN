@@ -32,8 +32,15 @@ const authApi = createApi({
                 url:'/logout',
                 method:'POST'
             })
-        })
+        }),
+        editProfile: builder.mutation({
+            query: ({id, profileData}) => ({
+                url: `/edit-profile/${id}`,
+                method: "PATCH",
+                body: profileData
+            })
+        }),
     })
 })
-export const {useLoginUserMutation,useRegisterUserMutation,useLogoutUserMutation} = authApi
+export const {useLoginUserMutation,useRegisterUserMutation,useLogoutUserMutation,useEditProfileMutation} = authApi
 export default authApi;

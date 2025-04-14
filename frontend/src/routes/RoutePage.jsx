@@ -16,6 +16,7 @@ import UserOrders from "../pages/dashboard/orders/UserOrders";
 import OrderDetails from "../pages/dashboard/orders/OrderDetails";
 import UserPayments from "../pages/dashboard/payments/UserPayments";
 import UserReviews from "../pages/dashboard/reviews/UserReviews";
+import UserProfile from "../pages/dashboard/profile/UserProfile";
 
 const RoutePage = () => {
   return (
@@ -53,7 +54,7 @@ const RoutePage = () => {
           <Route path="orders" element={<UserOrders/>} />
           {/* relative path aeta holo children */}
           <Route path="payments" element={<UserPayments/>} />
-          <Route path="profile" element={<div>Profile</div>} />
+          <Route path="profile" element={<UserProfile/>} />
           <Route path="reviews" element={<UserReviews/>} />
           {/* Admin Routes */}
           <Route

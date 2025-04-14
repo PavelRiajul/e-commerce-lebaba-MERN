@@ -110,6 +110,7 @@ const updateUserRole =async(req,res)=>{
 const editUserProfile =async(req,res)=>{
     const {id} = req.params;
     const {username,profileImage,bio,profession} = req.body;
+    console.log(req.body)
   try {
     const updateFields = {
         username,
@@ -121,7 +122,16 @@ const editUserProfile =async(req,res)=>{
     if(!updateUser){
         return errorResponse(res,404,'User not found!',error)
     }
-    return successResponse(res,200,'Users profile updated successfully!',updateUser)
+    //return successResponse(res,200,'Users profile updated successfully!',updateUser)
+    return successResponse(res, 200, "User profile updated successfully!", data = {
+      _id:updateUser._id,
+      username: updateUser.username,
+      email: updateUser.email,
+      role: updateUser.role,
+      profileImage: updateUser.profileImage,
+      bio: updateUser.bio,
+      profession: updateUser.profession,
+    });
   } catch (error) {
     errorResponse(res,500,'Failed to update user profile!',error)
   }
