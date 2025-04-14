@@ -12,6 +12,8 @@ import PaymentSuccess from "../components/PaymentSuccess";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivetRoute from "./PrivetRoute";
 import UserDMain from "../pages/dashboard/user/dashboard/UserDMain";
+import UserOrders from "../pages/dashboard/orders/UserOrders";
+import OrderDetails from "../pages/dashboard/orders/OrderDetails";
 
 const RoutePage = () => {
   return (
@@ -23,6 +25,7 @@ const RoutePage = () => {
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/shop/:id" element={<SingleProduct />} />
           <Route path="success" element={<PaymentSuccess />} />
+          <Route path="/orders/:orderId" element={<OrderDetails/>} /> {/* single order complete route */}
           <Route path="/categories/:categoryName" element={<CategoryPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
@@ -45,7 +48,7 @@ const RoutePage = () => {
           {/* Absolute path -> absolute path er bitore relative path use kore -> aeta holo parents*/}
           {/* User Routes */}
           <Route path="" element={<UserDMain/>} />
-          <Route path="orders" element={<div>Orders</div>} />{" "}
+          <Route path="orders" element={<UserOrders/>} />
           {/* relative path aeta holo children */}
           <Route path="payments" element={<div>Payments</div>} />
           <Route path="profile" element={<div>Profile</div>} />
