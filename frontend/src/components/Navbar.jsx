@@ -136,7 +136,7 @@ const Navbar = () => {
                           {
                             dropDownMenus.map((menu,index)=>(
                               <li key={index}>
-                               <Link className="dropdown-items" onClick={()=>handleDropDownToogle(false)}>{menu.label}</Link>
+                               <Link to={menu.path} className="dropdown-items" onClick={()=>handleDropDownToogle(false)}>{menu.label}</Link>
                               </li>
                             ))
                           }
