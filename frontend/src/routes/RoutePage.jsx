@@ -14,6 +14,8 @@ import PrivetRoute from "./PrivetRoute";
 import UserDMain from "../pages/dashboard/user/dashboard/UserDMain";
 import UserOrders from "../pages/dashboard/orders/UserOrders";
 import OrderDetails from "../pages/dashboard/orders/OrderDetails";
+import UserPayments from "../pages/dashboard/payments/UserPayments";
+import UserReviews from "../pages/dashboard/reviews/UserReviews";
 
 const RoutePage = () => {
   return (
@@ -50,9 +52,9 @@ const RoutePage = () => {
           <Route path="" element={<UserDMain/>} />
           <Route path="orders" element={<UserOrders/>} />
           {/* relative path aeta holo children */}
-          <Route path="payments" element={<div>Payments</div>} />
+          <Route path="payments" element={<UserPayments/>} />
           <Route path="profile" element={<div>Profile</div>} />
-          <Route path="reviews" element={<div>Reviews</div>} />
+          <Route path="reviews" element={<UserReviews/>} />
           {/* Admin Routes */}
           <Route
             path="admin"

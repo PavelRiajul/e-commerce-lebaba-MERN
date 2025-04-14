@@ -31,7 +31,7 @@ const DashboardLayout = () => {
             }
         </header>
         <main className='p-8 bg-white w-full border mt-5'>
-            <Outlet />
+            <Outlet/>
         </main>
 
     </div>
