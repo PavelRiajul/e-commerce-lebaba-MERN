@@ -20,6 +20,7 @@ import UserProfile from "../pages/dashboard/profile/UserProfile";
 import AdminDMain from "../pages/dashboard/admin/dashboard/AdminDMain";
 import ManageUsers from "../pages/dashboard/admin/users/ManageUsers";
 import ManageOrders from "../pages/dashboard/admin/orders/ManageOrders";
+import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
 
 const RoutePage = () => {
   return (
@@ -88,7 +89,7 @@ const RoutePage = () => {
             path="add-product"
             element={
               <PrivetRoute role="admin">
-                <div>add new product</div>
+                <AddProduct/>
               </PrivetRoute>
             }
           />
