@@ -18,6 +18,8 @@ import UserPayments from "../pages/dashboard/payments/UserPayments";
 import UserReviews from "../pages/dashboard/reviews/UserReviews";
 import UserProfile from "../pages/dashboard/profile/UserProfile";
 import AdminDMain from "../pages/dashboard/admin/dashboard/AdminDMain";
+import ManageUsers from "../pages/dashboard/admin/users/ManageUsers";
+import ManageOrders from "../pages/dashboard/admin/orders/ManageOrders";
 
 const RoutePage = () => {
   return (
@@ -78,7 +80,7 @@ const RoutePage = () => {
             path="manage-orders"
             element={
               <PrivetRoute role="admin">
-                <div>manage orders</div>
+                <ManageOrders/>
               </PrivetRoute>
             }
           />
@@ -110,7 +112,7 @@ const RoutePage = () => {
             path="users"
             element={
               <PrivetRoute role={"admin"}>
-                <div>Users</div>
+                <ManageUsers/>
               </PrivetRoute>
             }
           />
