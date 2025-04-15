@@ -22,6 +22,7 @@ import ManageUsers from "../pages/dashboard/admin/users/ManageUsers";
 import ManageOrders from "../pages/dashboard/admin/orders/ManageOrders";
 import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
 import ManageProducts from "../pages/dashboard/admin/manageProduct/ManageProducts";
+import UpdateProducts from "../pages/dashboard/admin/manageProduct/UpdateProducts";
 
 const RoutePage = () => {
   return (
@@ -106,7 +107,7 @@ const RoutePage = () => {
             path="update-product/:id"
             element={
               <PrivetRoute role="admin">
-                <div>update products</div>
+               <UpdateProducts/>
               </PrivetRoute>
             }
           />
