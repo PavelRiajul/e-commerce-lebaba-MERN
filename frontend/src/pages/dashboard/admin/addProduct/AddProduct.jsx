@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextInput from "./TextInput";
 import SelectInput from "./SelectInput";
+import UploadImage from "./UploadImage";
 
 const categories = [
   { label: "Select Category", value: "" },
@@ -17,6 +18,7 @@ const AddProduct = () => {
     price: "",
     color: "",
   });
+  const [image, setImage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +32,6 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(product);
-  
   };
 
   return (
@@ -60,22 +61,33 @@ const AddProduct = () => {
           value={product.price}
           onChange={handleChange}
         />
+        {/* image */}
+        <UploadImage
+          label="Image"
+          name="image"
+          id="image"
+          value={(e) => setImage(e.target.value)}
+          placeholder="Upload image"
+          setImage={setImage}
+        />
         {/* description */}
         <div>
-                    <label htmlFor="description" className='block text-sm font-medium text-gray-600'>Description</label>
+          <label
+            htmlFor="description"
+            className="block text-sm font-medium text-gray-600"
+          >
+            Description
+          </label>
 
-                    <textarea
-                        name="description"
-                        id="description"
-                        rows="6"
-                        value={product.description}
-                        onChange={handleChange}
-                        className='add-product-InputCSS'
-                    />
-                       
-                   
-                </div>
-
+          <textarea
+            name="description"
+            id="description"
+            rows="6"
+            value={product.description}
+            onChange={handleChange}
+            className="add-product-InputCSS"
+          />
+        </div>
 
         {/* submit button */}
         <div>
