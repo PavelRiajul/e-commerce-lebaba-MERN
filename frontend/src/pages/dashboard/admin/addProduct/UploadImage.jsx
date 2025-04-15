@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { getBaseUrl } from "../../../../utils/getbaseurl";
 
 const UploadImage = ({ name, setImage, label, id, value }) => {
   const [loading, setLoading] = useState(false);
@@ -18,8 +20,25 @@ const UploadImage = ({ name, setImage, label, id, value }) => {
       };
     });
   };
-  
-  const uploadSingleImage = async (base64) => {};
+
+  const uploadSingleImage = async (base64) => {
+    // call api to upload the image to cloudinary server
+    setLoading(true)
+    
+    await axios.post(`${getBaseUrl()}/uploadImage`, {image: base64})
+    .then((res) => {
+        const imageUrl = res.data;
+        setUrl(imageUrl);
+        console.log("Image URL:", res.data);
+        alert("Uploaded image successfully!")
+        setImage(imageUrl);
+    }).then(() => setLoading(false)).catch((error) => {
+        console.error("Failed to upload image", error);
+        setLoading(false);
+        alert("Failed to upload image, please try again!")
+    })
+  };
+
 
   const uploadImage = async (event) => {
     const files = event.target.files;
@@ -48,6 +67,20 @@ const UploadImage = ({ name, setImage, label, id, value }) => {
         id={name}
         className="add-product-InputCSS"
       />
+        {
+            loading && (
+            <div className='mt-2 text-sm text-blue-600'>
+                <p>Uplading...</p>
+            </div>)
+         }
+         {
+            url && (
+                <div>
+                    <p>Image uploaded successfully!</p>
+                    <img src={url} alt="uploaded image" />
+                </div>
+            )
+         }
     </div>
   );
 };

@@ -14,6 +14,9 @@ app.use(cors({
 }))
 app.use(cookieParser())
 app.use(bodyParser.json())
+
+
+const UploadImage = require("./src/utils/UploadImage")
 //routes
 const userRoutes = require('./src/users/user.route')
 const productsRoutes = require('./src/products/product.route')
@@ -32,6 +35,14 @@ async function main() {
     })
     }
     main().then(()=> console.log('Mongodb connected successfully!')).catch(err => console.log(err));
+
+    //upload image api
+    app.post('/uploadImage',  (req, res) => {
+      UploadImage(req.body.image)
+      .then((url) => res.send(url))
+      .catch((error) => res.status(500).send(error));
+    })
+      
 
 
 app.listen(port, () => {
