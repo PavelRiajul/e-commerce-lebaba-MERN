@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import TextInput from "./TextInput";
 import SelectInput from "./SelectInput";
 import UploadImage from "./UploadImage";
+import { useAddProductMutation } from "../../../../redux/features/products/productsApi";
+import { useSelector } from "react-redux";
 
 const categories = [
   { label: "Select Category", value: "" },
@@ -10,7 +12,18 @@ const categories = [
   { label: "Jewellery", value: "jewellery" },
   { label: "Cosmetics", value: "cosmetics" },
 ];
+const colors = [
+    { label: 'Select Color', value: '' },
+    { label: 'Black', value: 'black' },
+    { label: 'Red', value: 'red' },
+    { label: 'Gold', value: 'gold' },
+    { label: 'Blue', value: 'blue' },
+    { label: 'Silver', value: 'silver' },
+    { label: 'Beige', value: 'beige' },
+    { label: 'Green', value: 'green' }
+];
 const AddProduct = () => {
+    const {user} = useSelector(state => state.auth)
   const [product, setProduct] = useState({
     name: "",
     category: "",
@@ -19,6 +32,8 @@ const AddProduct = () => {
     color: "",
   });
   const [image, setImage] = useState("");
+
+  const [AddProduct, {isLoading, error}] = useAddProductMutation()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +46,26 @@ const AddProduct = () => {
   // Uncomment and implement handleSubmit when needed
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(product);
+    //console.log(product);
+    if (!product.name || !product.category || !product.price  || !product.color || !product.description) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    try {
+        await AddProduct({...product, image, author: user?._id}).unwrap();
+        alert('Product added successfully!');
+        setProduct({
+            name: '',
+            category: '',
+            description: '',
+            price: '',
+            color: ''
+        })
+        setImage("")
+    } catch (error) {
+        console.error('Failed to add product:', error);
+    }
   };
 
   return (
@@ -53,6 +87,13 @@ const AddProduct = () => {
           onChange={handleChange}
           options={categories}
         />
+           <SelectInput
+                    label="Color"
+                    name="color"
+                    value={product.color}
+                    onChange={handleChange}
+                    options={colors}
+                />
         <TextInput
           type="number"
           label="Price"

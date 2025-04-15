@@ -51,6 +51,7 @@ const getAllProducts =async(req,res)=>{
     .skip(skip)
     .limit(parseInt(limit))
     .populate('author', 'email username')
+    .sort({createdAt: -1})
     return successResponse(res, 200, "Products fetched successfully",data={
         products,
         totalProducts,
